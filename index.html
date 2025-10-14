@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To See Roll Inventory Order List</title>
+
+  <!-- Styles for the whole page -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- (OPTIONAL) Passcode overlay HTML — keep it here but commented out until you want it
+  <div id="lock-screen" class="lock-overlay" hidden>
+    <div class="lock-card">
+      <h2>Enter Passcode</h2>
+      <p>Type the 4-digit code to continue.</p>
+      <div class="lock-row">
+        <input id="pin" type="text" inputmode="numeric" maxlength="4"
+               placeholder="Enter 4 digits" aria-label="4 digit code"
+               autocomplete="one-time-code" />
+      </div>
+      <div id="lock-error" class="lock-error"></div>
+    </div>
+  </div>
+  -->
+
+  <h1>To See Roll Inventory Order List</h1>
+
+  <div class="card">
+    <!-- Submitter + needed by -->
+    <div class="row">
+      <div>
+        <label for="who">Requested By</label>
+        <input id="who" placeholder="e.g., Bruce / Shift A" />
+      </div>
+      <div>
+        <label for="needBy">Needed By (date)</label>
+        <input id="needBy" type="date" />
+      </div>
+    </div>
+
+    <label for="notes">Overall Notes (optional)</label>
+    <textarea id="notes" rows="3" placeholder="Delivery day, vendor preference, substitutes, etc."></textarea>
+
+    <p class="note">Needed by: <span id="needby-preview">(not set)</span></p>
+
+    <!-- Checklist -->
+    <div class="check-section">
+      <label>Inventory Checklist</label>
+      <div id="checklist" class="check-grid"><!-- items render here --></div>
+    </div>
+
+    <div class="actions">
+      <button id="send-all" class="success" type="button">Send All</button>
+      <button id="clear-all" class="danger" type="button">Clear All</button>
+    </div>
+    <p class="note">Check items above. Set quantities in the summary table below, then “Send All”.</p>
+    <p id="status" class="msg"></p>
+
+    <!-- Appears after a successful send -->
+    <div id="post-send-actions" class="actions" style="display:none">
+      <button id="confirm-new" class="primary" type="button">Confirmed &amp; New Order</button>
+    </div>
+  </div>
+
+  <!-- Summary table -->
+  <table>
+    <thead>
+      <tr>
+        <th style="width:58%">Item</th>
+        <th style="width:28%">Qty</th>
+        <th style="width:14%">Remove</th>
+      </tr>
+    </thead>
+    <tbody id="summary-body"><!-- rows render here --></tbody>
+    <tfoot>
+      <tr>
+        <td class="right" colspan="3" id="total-count">0 item(s) selected</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Config first (exposes SCRIPT_URL), then app logic -->
+  <script src="config.js"></script>
+  <!-- (OPTIONAL) Enable passcode later by uncommenting this next line -->
+  <!-- <script src="passcode.js"></script> -->
+  <script src="app.js"></script>
+</body>
+</html>
